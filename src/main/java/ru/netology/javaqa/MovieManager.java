@@ -11,7 +11,7 @@ public class MovieManager {
         this.findLastMoviesCount = findLastMoviesCount;
     }
 
-    private String[] CreateEmptyArray() {
+    private String[] сreateEmptyArray() {
         return new String[0];
     }
 
@@ -35,21 +35,26 @@ public class MovieManager {
         return movieNames;
     }
 
+    private int min(int a, int b){
+        if (a > b){
+            return b;
+        }
+        return a;
+    }
+
     public String[] findLast() {
-        if (findLastMoviesCount <= 0) {
-            return CreateEmptyArray();
+        int arraySize = min(findLastMoviesCount, getMoviesCount());
+
+        if (arraySize < 0) {
+            return сreateEmptyArray();
         }
 
-        if (getMoviesCount() <= findLastMoviesCount) {
-            return CreateEmptyArray();
-        }
+        String[] result = new String[arraySize];
 
-        String[] result = new String[findLastMoviesCount];
-
-        int firstCopyIndex = getMoviesCount() - findLastMoviesCount;
+        int firstCopyIndex = getMoviesCount() - arraySize;
 
         int j = 0;
-        for (int i = firstCopyIndex; i < getMoviesCount(); i++) {
+        for (int i = getMoviesCount() - 1; i >= firstCopyIndex; i--){
             result[j] = movieNames[i];
             j++;
         }

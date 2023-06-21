@@ -52,14 +52,14 @@ class MovieManagerTest {
 
 
         String[] actual = manager.findLast();
-        String[] expected = new String[]{"Transformers: Rise of the Beasts", "Knowing",
-                "The day after tomorrow", "Geostorm", "Spider-Man: Across the Spider-Verse"};
+        String[] expected = new String[]{"Spider-Man: Across the Spider-Verse", "Geostorm",
+                "The day after tomorrow", "Knowing", "Transformers: Rise of the Beasts"};
 
         Assertions.assertArrayEquals(expected, actual);
     }
 
     @Test
-    void findLastThreeMovies() {
+    void findLastThreeMoviesWithFiveInArray() {
         MovieManager manager = new MovieManager(3);
         manager.appendMovie("Forest Gump");
         manager.appendMovie("Star Wars");
@@ -71,13 +71,13 @@ class MovieManagerTest {
 
 
         String[] actual = manager.findLast();
-        String[] expected = new String[]{"The day after tomorrow", "Geostorm", "Spider-Man: Across the Spider-Verse"};
+        String[] expected = new String[]{"Spider-Man: Across the Spider-Verse", "Geostorm", "The day after tomorrow"};
 
         Assertions.assertArrayEquals(expected, actual);
     }
 
     @Test
-    void findLastWithNegativeLastMoviesCount() {
+    void findLastWithNegativeWithSevenInArray() {
         MovieManager manager = new MovieManager(-1);
         manager.appendMovie("Forest Gump");
         manager.appendMovie("Star Wars");
@@ -95,7 +95,34 @@ class MovieManagerTest {
     }
 
     @Test
-    void findLastWithEmptyManager() {
+    void findLastFiveMoviesWithThreeInArray() {
+        MovieManager manager = new MovieManager(5);
+        manager.appendMovie("Forest Gump");
+        manager.appendMovie("Star Wars");
+        manager.appendMovie("Transformers: Rise of the Beasts");
+
+        String[] actual = manager.findLast();
+        String[] expected = new String[] {"Transformers: Rise of the Beasts", "Star Wars", "Forest Gump"};
+
+        Assertions.assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    void findLastThreeMoviesWithThreeInArray() {
+        MovieManager manager = new MovieManager(3);
+        manager.appendMovie("Forest Gump");
+        manager.appendMovie("Star Wars");
+        manager.appendMovie("Transformers: Rise of the Beasts");
+
+        String[] actual = manager.findLast();
+        String[] expected = new String[] {"Transformers: Rise of the Beasts", "Star Wars", "Forest Gump"};
+
+        Assertions.assertArrayEquals(expected, actual);
+    }
+
+
+    @Test
+    void findLastFiveWithEmptyManager() {
         MovieManager manager = new MovieManager();
 
         String[] actual = manager.findLast();
